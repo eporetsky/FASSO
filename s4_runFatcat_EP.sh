@@ -22,7 +22,8 @@ FATCAT_DIR2=${BASE_DIR}alignments/${SPECIES2}_${SPECIES1}/fatcat
 OUT_DIR=${BASE_DIR}fatcat/out/${SPECIES1}_${SPECIES2}/
 
 mkdir ${FATCAT_DIR1}
-ln -s ${FATCAT_DIR1} ${FATCAT_DIR2}
+# Not sure if this symbolic link is necessary but it seems like it needs to be unlinked before s6.
+# ln -s ${FATCAT_DIR1} ${FATCAT_DIR2}
 mkdir ${OUT_DIR}
 
 for filename_path in ${SPLIT_DIR}*

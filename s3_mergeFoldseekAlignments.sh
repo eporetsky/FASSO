@@ -1,13 +1,19 @@
 #!/bin/bash
-#SBATCH CODE GOES HERE
+#SBATCH --job-name="job_name"
+#SBATCH --partition=partition_name
+#SBATCH --account=account_name
+#SBATCH --mem=16GB
+#SBATCH -t 1:00:00
+#SBATCH -o "./log/stdinn.%j.%N"
+#SBATCH -e "./log/stderr.%j.%N"
 
 date	#optional, prints out timestamp at the start of the job in stdout file
 
 ########################
 #Change these parameters
-SPECIES1=maize
-SPECIES2=arabidopsis
-BASE_DIR=~/FASSO/
+SPECIES1=$1
+SPECIES2=$2
+BASE_DIR="$PWD/"
 N=30 #Number of files to split alignment list for parellel running of Fatcat
 ########################
 
@@ -22,7 +28,7 @@ rm ${OUT_TMP}
 awk 'word!=$1{count=1;word=$1} count<=10{print; count++}' ${OUT_ALL} > ${OUT_TOP}
 
 FOLDSEEK_DIR=${BASE_DIR}alignments/${SPECIES2}_${SPECIES1}/foldseek/
-OUT_TMP=${BASE_DIR}top_hits/${SPECIES1}_${SPECIES2}/${SPECIES2}_${SPECIES1}_foldseek_temp.txt
+OUT_TMP=${BASE_DIR}top_hits/${SPECIES2}_${SPECIES1}/${SPECIES2}_${SPECIES1}_foldseek_temp.txt
 OUT_ALL=${BASE_DIR}top_hits/${SPECIES2}_${SPECIES1}/${SPECIES2}_${SPECIES1}_foldseek_allhits.txt
 OUT_TOP=${BASE_DIR}top_hits/${SPECIES2}_${SPECIES1}/${SPECIES2}_${SPECIES1}_foldseek_top10.txt
 #format data and save top ten hits
@@ -38,7 +44,7 @@ FOLDSEEK_CHECK1=${BASE_DIR}top_hits/${SPECIES1}_${SPECIES2}/${SPECIES1}_${SPECIE
 FOLDSEEK_CHECK2=${BASE_DIR}top_hits/${SPECIES2}_${SPECIES1}/${SPECIES2}_${SPECIES1}_foldseek_top10.txt
 
 SPLIT_FILE=${BASE_DIR}alignments/lists/${SPECIES1}_${SPECIES2}.txt
-SPLIT_DIR1=${BASE_DIR}alignments/splits/${SPECIES1}_${SPECIES2}/
+SPLIT_DIR1=${BASE_DIR}alignments/splits/${SPECIES1}_${SPECIES2}
 SPLIT_DIR2=${BASE_DIR}alignments/splits/${SPECIES2}_${SPECIES1}
 
 mkdir ${SPLIT_DIR1}
