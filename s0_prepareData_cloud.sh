@@ -7,7 +7,7 @@
 #SBATCH -o "./log/stdinn.%j.%N"
 #SBATCH -e "./log/stderr.%j.%N"
 
-date	#optional, prints out timestamp at the start of the job in stdout file
+date    #optional, prints out timestamp at the start of the job in stdout file
 
 ########################
 #Change these parameters
@@ -21,19 +21,14 @@ INPUT_DIR=${BASE_DIR}pdb/${SPECIES}
 FASTA_DIR=${BASE_DIR}fasta/${SPECIES}
 PDB_DIR=${BASE_DIR}pdb/${SPECIES}
 
-#Get dataset, untar, unzip
-mkdir ${INPUT_DIR}
+# Get dataset, untar, unzip
 mkdir ${FASTA_DIR}
 cd ${INPUT_DIR}
-tar -xf ${PDB_FILE}
-rm *.cif.gz # need to convert to 'find ..' as well
-gunzip *.gz # need to convert to 'find ..' as well
-rm *.tar    # need to convert to 'find ..' as well
-
+tar -xzf ${PDB_FILE}
+rm *.tar.gz
 
 # Create individual fasta files for each protein
-# pdb2fasta.py was modified to take as arguments: fasta output directory and path to a single pdb file
-find ${PDB_DIR}/ -maxdepth 1 -name "*.pdb" | xargs -n 1 -P 48  -I{} python ${BASE_DIR}pdb2fasta/pdb2fasta_EP.py ${FASTA_DIR}/ {}
+find ${PDB_DIR}/ -maxdepth 1 -name "*.pdb" | xargs -n 1 -P 48  -I{} python ${BASE_DIR}pdb2fasta/pdb2fasta.py ${FASTA_DIR}/ {}
 
 # Create a combined fasta file containing all species-specific protein sequences
 # Using find .. instead of cat .. to avoid "Argument list too long" error. Might also be faster.
@@ -56,4 +51,4 @@ echo "./foldseek/bin/foldseek createdb ${PDB_DIR}/ ${BASE_DIR}/foldseek/db/${SPE
 foldseek createdb ${PDB_DIR}/ ${BASE_DIR}/foldseek/db/${SPECIES}DB
 
 cd ../..
-date #optional, prints out timestamp when the job ends
+date                          #optional, prints out timestamp when the job ends
