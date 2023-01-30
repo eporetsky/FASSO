@@ -3,7 +3,7 @@
 #SBATCH --partition=partition_name
 #SBATCH --account=account_name
 #SBATCH --mem=16GB
-#SBATCH -t 1:00:00
+#SBATCH -t 10:00:00
 #SBATCH -o "./log/stdinn.%j.%N"
 #SBATCH -e "./log/stderr.%j.%N"
 
@@ -27,6 +27,8 @@ OUT_DIR=${BASE_DIR}alignments/${NAME}/foldseek/
 mkdir ${BASE_DIR}alignments/${NAME}
 ln -s ${BASE_DIR}alignments/${NAME} ${BASE_DIR}alignments/${NAME2}
 mkdir ${OUT_DIR}
+
+# might need to change permission (chmod) on fatcat/FATCAT to be able to run the executable
 
 for filename_path in ${SPLIT_DIR}*
 do

@@ -3,7 +3,7 @@
 #SBATCH --partition=partition_name
 #SBATCH --account=account_name
 #SBATCH --mem=16GB
-#SBATCH -t 1:00:00
+#SBATCH -t 10:00:00
 #SBATCH -o "./log/stdinn.%j.%N"
 #SBATCH -e "./log/stderr.%j.%N"
 
@@ -22,7 +22,7 @@ OUT_TMP=${BASE_DIR}top_hits/${SPECIES1}_${SPECIES2}/${SPECIES1}_${SPECIES2}_fold
 OUT_ALL=${BASE_DIR}top_hits/${SPECIES1}_${SPECIES2}/${SPECIES1}_${SPECIES2}_foldseek_allhits.txt
 OUT_TOP=${BASE_DIR}top_hits/${SPECIES1}_${SPECIES2}/${SPECIES1}_${SPECIES2}_foldseek_top10.txt
 #format data and save top ten hits
-cat ${FOLDSEEK_DIR}* > ${OUT_TMP}
+find ${FOLDSEEK_DIR} -maxdepth 1 -name "*" -print0 | xargs -0 -n1 -P 48 cat > ${OUT_TMP}
 sed 's/.pdb//g' ${OUT_TMP} > ${OUT_ALL}
 rm ${OUT_TMP}
 awk 'word!=$1{count=1;word=$1} count<=10{print; count++}' ${OUT_ALL} > ${OUT_TOP}
@@ -32,7 +32,7 @@ OUT_TMP=${BASE_DIR}top_hits/${SPECIES2}_${SPECIES1}/${SPECIES2}_${SPECIES1}_fold
 OUT_ALL=${BASE_DIR}top_hits/${SPECIES2}_${SPECIES1}/${SPECIES2}_${SPECIES1}_foldseek_allhits.txt
 OUT_TOP=${BASE_DIR}top_hits/${SPECIES2}_${SPECIES1}/${SPECIES2}_${SPECIES1}_foldseek_top10.txt
 #format data and save top ten hits
-cat ${FOLDSEEK_DIR}* > ${OUT_TMP}
+find ${FOLDSEEK_DIR} -maxdepth 1 -name "*" -print0 | xargs -0 -n1 -P 48 cat > ${OUT_TMP}
 sed 's/.pdb//g' ${OUT_TMP} > ${OUT_ALL}
 rm ${OUT_TMP}
 awk 'word!=$1{count=1;word=$1} count<=10{print; count++}' ${OUT_ALL} > ${OUT_TOP}

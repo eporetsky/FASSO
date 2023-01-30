@@ -20,11 +20,11 @@ BASE_DIR="$PWD/"
 
 #pip install scipy, matplotlib, matplotlib_venn
 
-echo "python ${BASE_DIR}python/make_venn_image.py ${SPECIES1} ${SPECIES2} ${SPECIES1_PROTEOME_SIZE} ${BASE_DIR}/venn/ ${BASE_DIR}/venn/"
-python ${BASE_DIR}python/make_venn_image.py ${SPECIES1} ${SPECIES2} ${SPECIES1_PROTEOME_SIZE} ${BASE_DIR}/venn/ ${BASE_DIR}/venn/
+echo "python ${BASE_DIR}python/make_venn_image.py ${SPECIES1} ${SPECIES2} ${SPECIES1_PROTEOME_SIZE} ${BASE_DIR}venn/ ${BASE_DIR}venn/"
+python ${BASE_DIR}python/make_venn_image.py ${SPECIES1} ${SPECIES2} ${SPECIES1_PROTEOME_SIZE} ${BASE_DIR}venn/ ${BASE_DIR}venn/
 
-echo "python ${BASE_DIR}python/make_venn_image.py ${SPECIES2} ${SPECIES1} ${SPECIES2_PROTEOME_SIZE} ${BASE_DIR}/venn/ ${BASE_DIR}/venn/"
-python ${BASE_DIR}python/make_venn_image.py ${SPECIES2} ${SPECIES1} ${SPECIES2_PROTEOME_SIZE} ${BASE_DIR}/venn/ ${BASE_DIR}/venn/
+echo "python ${BASE_DIR}python/make_venn_image.py ${SPECIES2} ${SPECIES1} ${SPECIES2_PROTEOME_SIZE} ${BASE_DIR}venn/ ${BASE_DIR}venn/"
+python ${BASE_DIR}python/make_venn_image.py ${SPECIES2} ${SPECIES1} ${SPECIES2_PROTEOME_SIZE} ${BASE_DIR}venn/ ${BASE_DIR}venn/
 
 date                          #optional, prints out timestamp when the job ends
 #End of file
