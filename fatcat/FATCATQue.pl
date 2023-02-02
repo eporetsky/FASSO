@@ -8,7 +8,9 @@
 
 my $fatcat;
 
-my $prog = "./fatcat/FATCAT-dist/FATCATMain/FATCAT";
+my $prog = "./fatcat/FATCAT";
+# Use if FATCATQue.pl and FATCAT executable are in the same 'fatcat' folder
+#my $prog = "./fatcat/FATCAT-dist/FATCATMain/FATCAT";
 
 my $begtime = time();
 

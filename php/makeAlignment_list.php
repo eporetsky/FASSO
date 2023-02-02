@@ -1,7 +1,7 @@
 <?PHP
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-  ini_set('memory_limit', '1024M'); 
+  ini_set('memory_limit', '32G'); 
 
    ////Rec list 1
    $file1 = $argv[1];

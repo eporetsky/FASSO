@@ -11,8 +11,8 @@ date	#optional, prints out timestamp at the start of the job in stdout file
 
 ########################
 #Change these parameters
-SPECIES1=$1
-SPECIES2=$2
+SPECIES1=$1 # query
+SPECIES2=$2 # target
 BASE_DIR="$PWD/"
 ########################
 PDB_DIR=${BASE_DIR}alignments/fasta_files/${SPECIES1}PDB_list.txt
