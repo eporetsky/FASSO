@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name="job_name"
+#SBATCH --job-name="FASSO"
 #SBATCH --partition=partition_name
 #SBATCH --account=account_name
 #SBATCH --mem=16GB

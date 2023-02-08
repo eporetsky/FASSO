@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH --job-name="EP-FASSO-0001"
-#SBATCH --partition=atlas
-#SBATCH --account=small_grains
+#SBATCH --job-name="FASSO"
+#SBATCH --partition=partition_name
+#SBATCH --account=account_name
 #SBATCH --mem=16GB
-#SBATCH -t 1:05:00
+#SBATCH -t 24:00:00
 #SBATCH -o "./log/stdinn.%j.%N"
 #SBATCH -e "./log/stderr.%j.%N"
 
@@ -25,7 +25,6 @@ echo "php ${BASE_DIR}php/merge_fatcat_diamond.php ${SPECIES1} ${SPECIES2} ${PASS
 php ${BASE_DIR}php/merge_fatcat_diamond.php ${SPECIES1} ${SPECIES2} ${PASS} ${DIAMOND} ${OUTPUT_DIR} ${MATRIX_DIR} ${FLAG_DIR} ${FATCAT_DIR}
 echo "php ${BASE_DIR}php/merge_fatcat_diamond.php ${SPECIES1} ${SPECIES2} ${PASS} ${DIAMOND} ${OUTPUT_DIR} ${MATRIX_DIR} ${FLAG_DIR} ${FATCAT_DIR}"
 php ${BASE_DIR}php/merge_fatcat_foldseek.php ${SPECIES1} ${SPECIES2} ${PASS} ${FOLDSEEK} ${OUTPUT_DIR} ${MATRIX_DIR} ${FLAG_DIR} ${FATCAT_DIR}
-#php merge_foldseek_alignments.php ${SPECIES1} ${PASS} ${TYPE} ${SPECIES1_SM} ${SPECIES2_SM} ${SPECIES2_UP} ${INPUT_DIR} ${OUTPUT_DIR} ${FOLDSEEK_DIR} ${DIAMOND_DIR}
 
 date                          #optional, prints out timestamp when the job ends
 #End of file

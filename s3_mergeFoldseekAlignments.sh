@@ -1,11 +1,16 @@
 #!/bin/bash
-#SBATCH --job-name="job_name"
+#SBATCH --job-name="FASSO"
 #SBATCH --partition=partition_name
 #SBATCH --account=account_name
 #SBATCH --mem=16GB
-#SBATCH -t 10:00:00
+#SBATCH -t 24:00:00
 #SBATCH -o "./log/stdinn.%j.%N"
 #SBATCH -e "./log/stderr.%j.%N"
+#SBATCH --mail-user=elly.poretsky@gmail.com
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=48
 
 date	#optional, prints out timestamp at the start of the job in stdout file
 

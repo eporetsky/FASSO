@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH --job-name="job_name"
+#SBATCH --job-name="FASSO"
 #SBATCH --partition=partition_name
 #SBATCH --account=account_name
 #SBATCH --mem=16GB
-#SBATCH -t 1:00:00
+#SBATCH -t 24:00:00
 #SBATCH -o "./log/stdinn.%j.%N"
 #SBATCH -e "./log/stderr.%j.%N"
 
@@ -16,19 +16,24 @@ SPECIES2=$2
 BASE_DIR="$PWD/"
 ########################
 
+
+
 SPLIT_DIR=${BASE_DIR}alignments/splits/${SPECIES1}_${SPECIES2}/
 FATCAT_DIR1=${BASE_DIR}alignments/${SPECIES1}_${SPECIES2}/fatcat
 FATCAT_DIR2=${BASE_DIR}alignments/${SPECIES2}_${SPECIES1}/fatcat
-OUT_DIR=${BASE_DIR}fatcat/out/${SPECIES1}_${SPECIES2}/
 
 mkdir ${FATCAT_DIR1}
 ln -s ${FATCAT_DIR1} ${FATCAT_DIR2}
-mkdir ${OUT_DIR}
+
+# FATCAT executable needs permission to run
+# Don't run an executable if you don't trust the source
+chmod +777 fatcat/FATCAT
 
 for filename_path in ${SPLIT_DIR}*
 do
 	filename=$(basename "$filename_path")
-	sbatch ${BASE_DIR}support_scripts/split_fatcat.sh ${SPECIES1} ${SPECIES2} ${SPLIT_DIR}$filename ${OUT_DIR}$filename
+        echo "sbatch ${BASE_DIR}split_fatcat.sh ${SPECIES1} ${SPECIES2} alignments/splits/${SPECIES1}_${SPECIES2}/$filename"
+	sbatch ${BASE_DIR}split_fatcat.sh ${SPECIES1} ${SPECIES2} alignments/splits/${SPECIES1}_${SPECIES2}/$filename
 done
 
 date                          #optional, prints out timestamp when the job ends

@@ -1,6 +1,6 @@
 <?PHP
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
-   ini_set('memory_limit', '32G');
+   ini_set('memory_limit', '30G');
 
    $query = $argv[1];
    $target = $argv[2];
@@ -9,7 +9,7 @@
 
   $no_count = 0;
 
-  $out_file1 = $base_dir . "annotations/" . $query . "_" . $target . "_annotation.txt";
+  $out_file1 = $output_dir . "annotations/" . $query . "_" . $target . "_annotation.txt";
   $handleOut1 = fopen($out_file1, 'w');
 
   $filenames[$query] = $base_dir . "annotations/uniprot/" . $query . "_uniprot.tsv";

@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH --job-name="EP-FASSO-0001"
-#SBATCH --partition=atlas
-#SBATCH --account=small_grains
+#SBATCH --job-name="FASSO"
+#SBATCH --partition=partition_name
+#SBATCH --account=account_name
 #SBATCH --mem=16GB
-#SBATCH -t 1:05:00
+#SBATCH -t 24:00:00
 #SBATCH -o "./log/stdinn.%j.%N"
 #SBATCH -e "./log/stderr.%j.%N"
 
