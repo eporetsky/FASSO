@@ -1,6 +1,8 @@
 <?PHP
   error_reporting(E_ERROR | E_PARSE);
 
+  ini_set('memory_limit', '32G');
+
   $species1 = $argv[1];
   $species2 = $argv[2];
   $pass = $argv[3];

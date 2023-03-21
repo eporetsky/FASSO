@@ -1,6 +1,8 @@
 <?PHP
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
+  ini_set('memory_limit', '32G');
+
 	////Input: Diamond output file between two proteomes
 	////Output: The top hits from the file, chain information removed from name
 

@@ -1,6 +1,6 @@
 <?PHP
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
-   ini_set('memory_limit', '30G');
+   ini_set('memory_limit', '32G');
 
    $query = $argv[1];
    $target = $argv[2];

@@ -1,6 +1,8 @@
 <?PHP
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
+  ini_set('memory_limit', '32G');
+
   $file1 = $argv[1];
   if(!file_exists($file1))
 	  {

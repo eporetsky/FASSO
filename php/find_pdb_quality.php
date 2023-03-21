@@ -1,6 +1,8 @@
 <?PHP
   error_reporting(E_ERROR | E_PARSE);
 
+  ini_set('memory_limit', '32G');
+
   $species = $argv[1];
   $pdb_dir = $argv[2];
   $out_file = $argv[3];

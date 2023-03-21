@@ -1,6 +1,8 @@
 <?PHP
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
+  ini_set('memory_limit', '32G');
+
   $file1 = $argv[1];  // /90daydata/maizegdb/carson/zAlphaFoldMerge/tables/maize_arab_top10_table_score.txt
   $file2 = $argv[2];  // /90daydata/maizegdb/carson/RSBH/maize_arab/output/maize_arab_top10_table_score.txt
   $species1 = $argv[3];

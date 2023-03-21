@@ -40,7 +40,7 @@ for line in fp.read().splitlines():
 fp.close()
 
 for chain in chain_list:
-    f = open(sys.argv[1]+filename+".fa", "a")
-    f.write('>%s:%s\n%s\n'%(filename,chain,chain_dict[chain]))
+    f = open(sys.argv[1]+filename+".fa", "w")
+    f.write('>%s\n%s\n'%(filename,chain_dict[chain]))
     f.close()
     #sys.stdout.write('>%s:%s\n%s\n'%(filename,chain,chain_dict[chain]))

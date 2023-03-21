@@ -1,5 +1,7 @@
 <?PHP
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  
+  ini_set('memory_limit', '32G');
 
    ////First position is sorted
 	$fileR = $argv[4];
